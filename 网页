@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fiona Huang Portfolio</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Jost',sans-serif;
+  background:#fff;
+  overflow-x:hidden;
+  color:#111;
+}
+:root{
+  --blue:#002FA7;
+  --blue-deep:#001b63;
+  --blue-light:#4f7dff;
+  --white:#fff;
+  --text:#111;
+  --muted:#6d7893;
+  --shadow:0 18px 60px rgba(0,0,0,.14);
+}
+
+.nav{
+  position:fixed;
+  top:22px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:14px;
+  z-index:999;
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.68);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  box-shadow:0 8px 30px rgba(0,47,167,.08);
+  border:1px solid rgba(0,47,167,.08);
+}
+.nav a{
+  color:var(--blue);
+  text-decoration:none;
+  font-size:13px;
+  letter-spacing:1.8px;
+  padding:9px 14px;
+  border-radius:999px;
+  transition:.35s ease;
+  white-space:nowrap;
+}
+.nav a:hover{
+  background:rgba(0,47,167,.08);
+  transform:translateY(-1px);
+}
+
+.cursor-light,.cursor-core{
+  position:fixed;
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  z-index:998;
+}
+.cursor-light{
+  width:600px;height:600px;
+  background:radial-gradient(circle,rgba(0,47,167,.42),transparent 70%);
+  filter:blur(105px);
+  transition:background .4s;
+}
+.cursor-core{
+  width:120px;height:120px;
+  background:radial-gradient(circle,rgba(0,47,167,.92),transparent 70%);
+  transition:background .4s;
+}
+
+/* 首页 */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  padding:100px 24px 40px;
+}
+.hero-particle-wrap{
+  position:relative;
+  width:min(96vw,1320px);
+  height:540px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+#heroParticleCanvas{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:1;
+}
+.title{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  position:absolute;
+  inset:0;
+  color:var(--blue);
+}
+.title-main{z-index:4;}
+.title-main .title-word{
+  display:block;
+  font-family:'Sora',sans-serif;
+  font-size:clamp(52px,8vw,110px);
+  font-weight:800;
+  letter-spacing:0.12em;
+  line-height:1;
+  transition:filter .6s ease, transform .6s ease, opacity .6s ease;
+  text-shadow:0 0 1px rgba(0,47,167,.35),0 0 10px rgba(0,47,167,.08);
+}
+.title-main .sub{
+  font-size:18px;
+  margin-top:18px;
+  letter-spacing:8px;
+  transition:opacity .6s ease, transform .6s ease, filter .6s ease;
+}
+.title-ghost{
+  pointer-events:none;
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:var(--blue);
+  mix-blend-mode:multiply;
+}
+.title-ghost .title-word{
+  font-family:'Sora',sans-serif;
+  font-size:clamp(52px,8vw,110px);
+  font-weight:800;
+  letter-spacing:0.12em;
+  line-height:1;
+}
+.title-ghost .sub{
+  font-size:18px;
+  margin-top:18px;
+  letter-spacing:8px;
+}
+.title-ghost-1{z-index:2;filter:blur(7px);transform:translate(10px,2px) scale(1.01);opacity:.18;}
+.title-ghost-2{z-index:2;filter:blur(18px);transform:translate(-14px,10px) scale(1.045);opacity:.12;}
+.title-ghost-3{z-index:2;filter:blur(28px);transform:translate(0,0) scale(1.07);opacity:.08;}
+.hero-particle-wrap::before{
+  content:"";
+  position:absolute;
+  width:760px;
+  height:760px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(0,47,167,.15), rgba(0,47,167,0) 70%);
+  filter:blur(38px);
+  z-index:0;
+  animation:heroBreath 5s ease-in-out infinite;
+}
+.hero-particle-wrap::after{
+  content:"";
+  position:absolute;
+  width:980px;
+  height:440px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(0,47,167,.06), rgba(0,47,167,0) 72%);
+  filter:blur(44px);
+  z-index:0;
+}
+@keyframes heroBreath{
+  0%,100%{transform:scale(1) translateY(0);}
+  50%{transform:scale(1.08) translateY(-8px);}
+}
+.hero-particle-wrap.active .title-main .title-word{
+  filter:blur(1.8px);
+  transform:scale(1.012) translateY(1px);
+  opacity:.9;
+}
+.hero-particle-wrap.active .title-main .sub{
+  transform:translateY(2px);
+  opacity:.85;
+  filter:blur(.6px);
+}
+.hero-particle-wrap.active .title-ghost-1{transform:translate(22px,-2px) scale(1.04);opacity:.28;}
+.hero-particle-wrap.active .title-ghost-2{transform:translate(-26px,14px) scale(1.08);opacity:.16;}
+.hero-particle-wrap.active .title-ghost-3{transform:translate(8px,-10px) scale(1.12);opacity:.11;}
+
+/* 海浪 */
+.wave-transition{
+  position:relative;
+  width:100%;
+  height:220px;
+  background:#fff;
+  overflow:hidden;
+  margin-top:-30px;
+}
+.wave-transition svg{position:absolute;bottom:0;width:200%;}
+.wave1{fill:#002FA7;animation:waveMove1 8s linear infinite;}
+.wave2{fill:#002FA7;opacity:.9;animation:waveMove2 12s linear infinite;}
+.wave3{fill:#002FA7;opacity:.8;animation:waveMove3 16s linear infinite;}
+@keyframes waveMove1{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+@keyframes waveMove2{0%{transform:translateX(-20px);}100%{transform:translateX(-70px);}}
+@keyframes waveMove3{0%{transform:translateX(-40px);}100%{transform:translateX(-90px);}}
+
+/* 第二页 */
+.section{
+  padding:18px 8% 120px;
+  background:
+    radial-gradient(circle at 12% 14%, rgba(255,255,255,.12), transparent 22%),
+    radial-gradient(circle at 88% 20%, rgba(255,255,255,.08), transparent 18%),
+    linear-gradient(180deg, #002FA7 0%, #00278d 55%, #00236f 100%);
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+  margin-top:-38px;
+}
+.marquee-container{
+  width:100%;
+  overflow:hidden;
+  white-space:nowrap;
+  position:absolute;
+  top:18px;
+  left:0;
+  opacity:.10;
+  pointer-events:none;
+}
+.marquee{
+  display:inline-block;
+  animation:marquee 18s linear infinite;
+  font-family:'Sora',sans-serif;
+  font-size:68px;
+  font-weight:800;
+  letter-spacing:.08em;
+}
+@keyframes marquee{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-50%);}
+}
+.resume-top{
+  display:grid;
+  grid-template-columns:1.08fr 1.12fr;
+  gap:28px;
+  align-items:stretch;
+  margin-top:0;
+  margin-bottom:46px;
+}
+.profile-card,.skill-box{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.16);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-radius:28px;
+  box-shadow:var(--shadow);
+}
+.profile-card{
+  padding:30px;
+  display:flex;
+  gap:24px;
+  align-items:center;
+  min-height:420px;
+}
+.photo-wrap{
+  position:relative;
+  width:340px;
+  height:340px;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:auto;
+}
+.personal-photo{
+  width:260px;
+  height:320px;
+  border-radius:999px;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:0 18px 40px rgba(0,0,0,.22);
+  position:relative;
+  z-index:3;
+}
+.personal-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  transform:scale(1.08);
+}
+.personal-text{
+  display:flex;
+  flex-direction:column;
+}
+.personal-text h3{
+  font-family:'Sora',sans-serif;
+  font-size:44px;
+  font-weight:800;
+  margin-bottom:14px;
+  line-height:1;
+}
+.personal-text p{
+  font-size:18px;
+  line-height:1.9;
+}
+.email{
+  font-size:16px;
+  margin-top:10px;
+  opacity:.92;
+}
+.skill-box{
+  padding:30px 32px;
+  color:#fff;
+}
+.skill-box h4{
+  font-family:'Sora',sans-serif;
+  font-size:26px;
+  font-weight:800;
+  margin-bottom:18px;
+}
+.skill-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+.skill-item{
+  padding:16px 16px;
+  border-radius:18px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.10);
+}
+.skill-item strong{
+  display:block;
+  font-size:14px;
+  letter-spacing:1px;
+  margin-bottom:8px;
+}
+.skill-item span{
+  display:block;
+  font-size:14px;
+  line-height:1.75;
+  opacity:.92;
+}
+.resume-block{margin-top:8px;}
+.resume-title{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  font-family:'Sora',sans-serif;
+  font-size:24px;
+  font-weight:700;
+  margin:34px 0 22px;
+}
+.resume-title::before{
+  content:"";
+  width:42px;
+  height:4px;
+  border-radius:999px;
+  background:linear-gradient(90deg,#fff,rgba(255,255,255,.25));
+}
+.job-container{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+.job-card{
+  background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(240,244,255,.93));
+  border-radius:24px;
+  padding:24px 28px;
+  color:#002FA7;
+  cursor:pointer;
+  transition:.35s ease;
+  box-shadow:0 12px 30px rgba(0,0,0,.08);
+  border:1px solid rgba(255,255,255,.4);
+}
+.job-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 22px 40px rgba(0,0,0,.12);
+}
+.job-topline{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.job-meta{
+  font-size:13px;
+  letter-spacing:1.3px;
+  color:#5771c9;
+}
+.job-card h4{
+  font-family:'Sora',sans-serif;
+  font-size:20px;
+  line-height:1.4;
+  margin-bottom:8px;
+}
+.job-card p{
+  font-size:15px;
+  line-height:1.7;
+  color:#294baf;
+}
+.expand-hint{
+  color:#8ba0e6;
+  font-size:13px;
+  white-space:nowrap;
+}
+.sub-cards{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin-top:14px;
+}
+.sub-card{
+  background:linear-gradient(145deg,#fff,#eef3ff);
+  border-radius:18px;
+  padding:18px;
+  text-align:left;
+  color:#002FA7;
+  transition:.35s ease;
+  border:1px solid rgba(0,47,167,.06);
+}
+.sub-card:hover{transform:translateY(-4px);}
+.icon{font-size:24px;margin-bottom:10px;}
+.sub-title{font-size:14px;line-height:1.6;font-weight:500;}
+
+/* 第四页 项目展示 */
+.projects-section{
+  padding:110px 8% 120px;
+  background:#f7f9ff;
+  position:relative;
+  overflow:hidden;
+}
+.projects-section::before{
+  content:"";
+  position:absolute;
+  width:520px;
+  height:520px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(0,47,167,.08), transparent 70%);
+  top:-120px;
+  right:-100px;
+  filter:blur(10px);
+}
+.projects-wrap{position:relative;z-index:2;}
+.section-page-title{
+  text-align:center;
+  font-family:'Sora',sans-serif;
+  font-weight:800;
+  font-size:clamp(28px,4vw,44px);
+  color:var(--blue);
+  margin-bottom:16px;
+}
+.section-page-sub{
+  text-align:center;
+  color:#5f709c;
+  font-size:15px;
+  line-height:1.8;
+  max-width:760px;
+  margin:0 auto 44px;
+}
+.slides-container{
+  position:relative;
+  height:610px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+.slide-card{
+  background:#002FA7;
+  border-radius:28px;
+  width:280px;
+  height:430px;
+  position:absolute;
+  top:50%;
+  color:#fff;
+  box-shadow:0 18px 40px rgba(0,0,0,0.18);
+  transition:all .5s ease;
+  cursor:pointer;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.12);
+}
+.slide-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(255,255,255,0) 20%,rgba(0,0,0,.10) 48%,rgba(0,18,78,.70) 100%);
+  z-index:1;
+}
+.card-cover{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+.card-content{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:2;
+  padding:22px 20px 22px;
+}
+.slide-card .card-number{
+  position:absolute;
+  top:16px;
+  right:16px;
+  font-family:'Sora',sans-serif;
+  font-size:18px;
+  font-weight:800;
+  letter-spacing:.08em;
+  opacity:.75;
+  z-index:2;
+}
+.slide-card .card-tag{
+  display:inline-flex;
+  font-size:11px;
+  letter-spacing:1.8px;
+  text-transform:uppercase;
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.14);
+  backdrop-filter:blur(6px);
+  margin-bottom:12px;
+}
+.slide-card .card-title{
+  font-family:'Sora',sans-serif;
+  font-size:22px;
+  font-weight:700;
+  line-height:1.3;
+}
+.slide-arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:32px;
+  color:#002FA7;
+  background:#fff;
+  border-radius:50%;
+  width:54px;
+  height:54px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:100;
+  box-shadow:0 12px 25px rgba(0,0,0,0.12);
+  user-select:none;
+}
+.slide-arrow.left{left:0;}
+.slide-arrow.right{right:0;}
+
+/* 第五页 内容运营 */
+.content-section{
+  padding:110px 8% 120px;
+  background:#fff;
+  position:relative;
+}
+.content-intro{
+  text-align:center;
+  color:#5f709c;
+  font-size:15px;
+  line-height:1.8;
+  max-width:760px;
+  margin:0 auto 50px;
+}
+.magazine-grid{
+  column-count:3;
+  column-gap:22px;
+}
+.mag-card{
+  break-inside:avoid;
+  margin-bottom:22px;
+  display:block;
+  text-decoration:none;
+  background:#fff;
+  border:1px solid rgba(0,47,167,.08);
+  border-radius:24px;
+  overflow:hidden;
+  box-shadow:0 10px 24px rgba(0,47,167,.05);
+  transition:.35s ease;
+}
+.mag-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 36px rgba(0,47,167,.10);
+}
+.mag-cover{
+  width:100%;
+  display:block;
+  object-fit:cover;
+  object-position:center;
+  background:#eef3ff;
+}
+.mag-card.tall .mag-cover{aspect-ratio:4/6;}
+.mag-card.medium .mag-cover{aspect-ratio:4/5;}
+.mag-card.short .mag-cover{aspect-ratio:4/4.3;}
+.mag-info{
+  padding:18px 18px 20px;
+}
+.mag-index{
+  display:inline-block;
+  font-size:11px;
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+  color:#6f84c8;
+  margin-bottom:8px;
+}
+.mag-title{
+  font-family:'Sora',sans-serif;
+  color:var(--blue);
+  font-size:18px;
+  line-height:1.55;
+  margin-bottom:10px;
+}
+.mag-desc{
+  color:#60719d;
+  line-height:1.8;
+  font-size:14px;
+}
+
+/* 第六页 会徽设计 */
+.other-works-section{
+  padding:110px 8% 120px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(0,47,167,.06), transparent 22%),
+    radial-gradient(circle at 80% 10%, rgba(0,47,167,.05), transparent 18%),
+    #f7f9ff;
+  position:relative;
+  overflow:hidden;
+}
+.logo-proposal-wrap{position:relative;z-index:2;}
+.logo-hero-card{
+  position:relative;
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:28px;
+  align-items:stretch;
+  padding:26px;
+  border-radius:32px;
+  background:rgba(255,255,255,.72);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(0,47,167,.08);
+  box-shadow:0 18px 40px rgba(0,47,167,.08);
+  overflow:hidden;
+  cursor:pointer;
+  transition:transform .45s ease, box-shadow .45s ease, border-color .45s ease;
+}
+.logo-hero-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 24px 60px rgba(0,47,167,.14);
+  border-color:rgba(0,47,167,.16);
+}
+.logo-hero-glow{
+  position:absolute;
+  width:420px;
+  height:420px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(0,47,167,.14), rgba(0,47,167,0) 70%);
+  right:-60px;
+  top:-80px;
+  filter:blur(20px);
+  pointer-events:none;
+}
+.logo-hero-img{
+  width:100%;
+  height:100%;
+  min-height:420px;
+  object-fit:cover;
+  object-position:center;
+  border-radius:24px;
+  box-shadow:0 12px 30px rgba(0,0,0,.08);
+  transition:transform .6s ease;
+}
+.logo-hero-card:hover .logo-hero-img{transform:scale(1.02);}
+.logo-hero-info{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:10px 6px;
+}
+.logo-hero-tag{
+  display:inline-flex;
+  align-self:flex-start;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(0,47,167,.08);
+  color:var(--blue);
+  font-size:12px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  margin-bottom:16px;
+}
+.logo-hero-info h3{
+  font-family:'Sora',sans-serif;
+  color:var(--blue);
+  font-size:32px;
+  line-height:1.3;
+  margin-bottom:16px;
+}
+.logo-hero-info p{
+  color:#5d6f9e;
+  font-size:15px;
+  line-height:1.9;
+  margin-bottom:22px;
+}
+.logo-open-btn{
+  width:max-content;
+  border:none;
+  background:var(--blue);
+  color:#fff;
+  border-radius:999px;
+  padding:14px 22px;
+  font-size:14px;
+  cursor:pointer;
+  transition:transform .3s ease, background .3s ease;
+}
+.logo-open-btn:hover{
+  transform:translateY(-2px);
+  background:#001f78;
+}
+
+/* 通用弹窗 */
+#slide-popup{
+  display:none;
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(2,12,45,0.68);
+  z-index:1200;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+#slide-popup .popup-content{
+  width:min(1200px,100%);
+  height:min(90vh,860px);
+  overflow:hidden;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  border-radius:28px;
+  border:1px solid rgba(255,255,255,.2);
+  position:relative;
+  box-shadow:0 24px 80px rgba(0,0,0,.28);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+#slide-popup .popup-close{
+  position:absolute;
+  top:16px;
+  right:18px;
+  font-size:32px;
+  cursor:pointer;
+  font-weight:bold;
+  z-index:60;
+  color:#fff;
+  line-height:1;
+}
+#popup-carousel{
+  position:relative;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+}
+#popup-carousel .carousel-inner{
+  display:flex;
+  transition:transform 0.5s ease;
+  height:100%;
+}
+#popup-carousel img{
+  width:100%;
+  flex-shrink:0;
+  object-fit:contain;
+  height:100%;
+  padding:54px 34px 30px;
+}
+.carousel-arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:30px;
+  color:#002FA7;
+  background:#fff;
+  border-radius:50%;
+  width:50px;
+  height:50px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:50;
+  box-shadow:0 10px 24px rgba(0,0,0,.12);
+}
+.left-arrow{left:14px;}
+.right-arrow{right:14px;}
+
+.footer-note{
+  padding:26px 8% 40px;
+  background:#fff;
+  color:#6c7aa8;
+  font-size:13px;
+  letter-spacing:1.2px;
+}
+
+@media(max-width:1100px){
+  .resume-top{grid-template-columns:1fr;}
+  .sub-cards{grid-template-columns:repeat(2,1fr);}
+  .magazine-grid{column-count:2;}
+  .logo-hero-card{grid-template-columns:1fr;}
+}
+@media(max-width:900px){
+  .nav{
+    gap:6px;
+    padding:8px 10px;
+    max-width:calc(100vw - 24px);
+    overflow-x:auto;
+  }
+  .nav::-webkit-scrollbar{display:none;}
+  .nav a{font-size:12px;padding:8px 12px;}
+  .hero{padding-top:110px;}
+  .hero-particle-wrap{height:390px;}
+  .title-main .sub,.title-ghost .sub{font-size:14px;letter-spacing:4px;}
+  .profile-card{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    min-height:auto;
+  }
+  .personal-text h3{font-size:36px;}
+  .skill-grid{grid-template-columns:1fr;}
+  .slides-container{height:560px;}
+  .slide-card{width:240px;height:380px;}
+}
+@media(max-width:640px){
+  .cursor-light,.cursor-core{display:none;}
+  .section{padding:18px 20px 86px;}
+  .projects-section,.content-section,.other-works-section{padding:72px 20px 90px;}
+  .marquee{font-size:48px;}
+  .profile-card,.skill-box{border-radius:22px;}
+  .profile-card,.skill-box{padding:22px;}
+  .photo-wrap{width:270px;height:270px;}
+  .personal-photo{width:190px;height:240px;}
+  .personal-text h3{font-size:32px;}
+  .personal-text p{font-size:16px;}
+  .job-card{padding:18px;border-radius:20px;}
+  .job-topline{flex-direction:column;align-items:flex-start;gap:8px;}
+  .job-card h4{font-size:18px;}
+  .sub-cards{grid-template-columns:1fr;}
+  .slides-container{height:520px;}
+  .slide-card{width:220px;height:350px;border-radius:24px;}
+  .slide-card .card-title{font-size:19px;}
+  .slide-arrow{width:44px;height:44px;font-size:24px;}
+  #popup-carousel img{padding:50px 18px 22px;}
+  .magazine-grid{column-count:1;}
+  .logo-hero-card{padding:16px;border-radius:24px;}
+  .logo-hero-img{min-height:260px;border-radius:18px;}
+  .logo-hero-info h3{font-size:24px;}
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a href="#home">首页</a>
+  <a href="#about">个人情况</a>
+  <a href="#projects">项目展示</a>
+  <a href="#content">内容运营</a>
+  <a href="#otherWorks">其他作品</a>
+</div>
+
+<div class="cursor-light"></div>
+<div class="cursor-core"></div>
+
+<section class="hero" id="home">
+  <div class="hero-particle-wrap" id="heroParticleWrap">
+    <canvas id="heroParticleCanvas"></canvas>
+
+    <div class="title title-main" id="heroTitle">
+      <span class="title-word">FIONA HUANG</span>
+      <span class="sub">PORTFOLIO</span>
+    </div>
+
+    <div class="title title-ghost title-ghost-1" aria-hidden="true">
+      <span class="title-word">FIONA HUANG</span>
+      <span class="sub">PORTFOLIO</span>
+    </div>
+    <div class="title title-ghost title-ghost-2" aria-hidden="true">
+      <span class="title-word">FIONA HUANG</span>
+      <span class="sub">PORTFOLIO</span>
+    </div>
+    <div class="title title-ghost title-ghost-3" aria-hidden="true">
+      <span class="title-word">FIONA HUANG</span>
+      <span class="sub">PORTFOLIO</span>
+    </div>
+  </div>
+</section>
+
+<div class="wave-transition">
+  <svg viewBox="0 0 1200 200" preserveAspectRatio="none">
+    <path d="M0,100 C200,180 400,20 600,100 C800,180 1000,20 1200,100 L1200,200 L0,200 Z" class="wave1"/>
+    <path d="M0,120 C220,200 420,40 600,120 C780,200 1000,40 1200,120 L1200,200 L0,200 Z" class="wave2"/>
+    <path d="M0,140 C180,220 400,60 600,140 C800,220 1020,60 1200,140 L1200,200 L0,200 Z" class="wave3"/>
+  </svg>
+</div>
+
+<section class="section" id="about">
+  <div class="marquee-container">
+    <div class="marquee">PERSONAL&nbsp;&nbsp;&nbsp;&nbsp;PERSONAL&nbsp;&nbsp;&nbsp;&nbsp;PERSONAL&nbsp;&nbsp;&nbsp;&nbsp;PERSONAL&nbsp;&nbsp;&nbsp;&nbsp;PERSONAL</div>
+  </div>
+
+  <div class="resume-top">
+    <div class="profile-card">
+      <div class="photo-wrap">
+        <div class="personal-photo">
+          <img src="https://img.heliar.top/file/1773825464738_主题_15.png" alt="主题_15.png">
+        </div>
+      </div>
+
+      <div class="personal-text">
+        <h3>黄菲菲</h3>
+        <p>东华大学 美术 硕士<br>湖北民族大学 美术 学士</p>
+        <p class="email">958565298@qq.com</p>
+      </div>
+    </div>
+
+    <div class="skill-box">
+      <h4>技能与工具</h4>
+      <div class="skill-grid">
+        <div class="skill-item">
+          <strong>PPT / 方案输出</strong>
+          <span>熟练掌握商务PPT制作，擅长提案逻辑、视觉统一与信息层级整理。</span>
+        </div>
+        <div class="skill-item">
+          <strong>AI 设计应用</strong>
+          <span>豆包、即梦等 AI 作图与设计辅助工具，可用于方案创意与视觉生成。</span>
+        </div>
+        <div class="skill-item">
+          <strong>视觉设计</strong>
+          <span>PS、Canva、秀米熟练使用，具备良好审美与品牌视觉表达能力。</span>
+        </div>
+        <div class="skill-item">
+          <strong>影像与剪辑</strong>
+          <span>摄影摄像、PR、剪映，能够完成创意短视频与活动传播内容制作。</span>
+        </div>
+        <div class="skill-item">
+          <strong>办公协作</strong>
+          <span>EXCEL、Xmind，可支持数据整理、流程梳理与项目协同管理。</span>
+        </div>
+        <div class="skill-item">
+          <strong>综合优势</strong>
+          <span>兼具美术背景、内容审美、执行推进与跨团队协作能力。</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="resume-block">
+    <div class="resume-title">实习经历</div>
+    <div class="job-container">
+      <div class="job-card" id="job1">
+        <div class="job-topline">
+          <div>
+            <div class="job-meta">2025.06 — 2025.12</div>
+            <h4>道达尔能源 TotalEnergies</h4>
+            <p>技术与市场部实习生</p>
+          </div>
+          <div class="expand-hint">点击展开</div>
+        </div>
+      </div>
+
+      <div class="job-card" id="job2">
+        <div class="job-topline">
+          <div>
+            <div class="job-meta">2024.03 — 2024.10</div>
+            <h4>上海翔格商务咨询有限公司</h4>
+            <p>市场调查实习生</p>
+          </div>
+          <div class="expand-hint">点击展开</div>
+        </div>
+      </div>
+
+      <div class="job-card" id="job3">
+        <div class="job-topline">
+          <div>
+            <div class="job-meta">2023.12 — 2024.12</div>
+            <h4>上海乐瑕文化传播有限公司</h4>
+            <p>非遗活动策划</p>
+          </div>
+          <div class="expand-hint">点击展开</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="resume-title" style="margin-top:42px;">项目经历</div>
+    <div class="job-container">
+      <div class="job-card" id="job4">
+        <div class="job-topline">
+          <div>
+            <div class="job-meta">2023.09 — 2024.11</div>
+            <h4>国家艺术基金《纺织服饰博物馆文创设计人才培训》</h4>
+            <p>活动执行负责人</p>
+          </div>
+          <div class="expand-hint">点击展开</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="projects-section" id="projects">
+  <div class="projects-wrap">
+    <h2 class="section-page-title">项目展示</h2>
+    <p class="section-page-sub">展会策划、活动执行、行业会议与人才培训项目案例展示。点击卡片可查看对应图片内容。</p>
+
+    <section class="slides-container">
+      <div class="slide-arrow left">&#10094;</div>
+      <div class="slide-arrow right">&#10095;</div>
+
+      <div class="slide-card" data-index="0" id="project1">
+        <img class="card-cover" alt="液冷技术展会策划" src="https://img.heliar.top/file/1773818306330_展台全景.jpg"/>
+        <div class="card-number">01</div>
+        <div class="card-content">
+          <div class="card-tag">Event Planning</div>
+          <div class="card-title">液冷技术展会策划</div>
+        </div>
+      </div>
+
+      <div class="slide-card" data-index="1" id="project2">
+        <img class="card-cover" alt="非遗活动策划" src="https://img.heliar.top/file/1773812755071_幻灯片5.png"/>
+        <div class="card-number">02</div>
+        <div class="card-content">
+          <div class="card-tag">Activity Planning</div>
+          <div class="card-title">非遗活动策划</div>
+        </div>
+      </div>
+
+      <div class="slide-card" data-index="2" id="project3">
+        <img class="card-cover" alt="全国植物保护研讨会" src="https://img.heliar.top/file/1773826506395__cgi-bin_mmwebwx-bin_webwxgetmsgimg___MsgID_3362640658615393933_skey__crypt_d4de43a4_a2811edf19bb1f0ddf8fff108c11e13e_mmweb_appid_wx_webfilehelper.jpg"/>
+        <div class="card-number">03</div>
+        <div class="card-content">
+          <div class="card-tag">Seminar</div>
+          <div class="card-title">全国植物保护研讨会</div>
+        </div>
+      </div>
+
+      <div class="slide-card" data-index="3" id="project4">
+        <img class="card-cover" alt="国家艺术基金 博物馆人才培训项目" src="https://img.heliar.top/file/1773828940575_image.png"/>
+        <div class="card-number">04</div>
+        <div class="card-content">
+          <div class="card-tag">Training Project</div>
+          <div class="card-title">国家艺术基金 博物馆人才培训项目</div>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+
+<section class="content-section" id="content">
+  <h2 class="section-page-title">内容运营</h2>
+  <p class="content-intro">公众号选题、封面设计、图文排版与传播案例。点击卡片即可跳转到对应原链接查看完整内容。</p>
+
+  <div class="magazine-grid">
+    <a class="mag-card tall" href="https://mp.weixin.qq.com/s/Stc0B6rAWJKWJtPCwFtPwQ" target="_blank" rel="noopener noreferrer">
+      <img class="mag-cover" alt="液冷有道 | 道达尔能源特殊流体Bio Life生物基冷却液亮相CDCE2025数据中心及云计算展" src="https://img.heliar.top/file/1773830832006_e259856a042177fe8433fd754a688011.gif">
+      <div class="mag-info">
+        <span class="mag-index">WeChat Article 01</span>
+        <div class="mag-title">液冷有道 | 道达尔能源特殊流体Bio Life生物基冷却液亮相CDCE2025数据中心及云计算展</div>
+        <div class="mag-desc">公众号图文 / 行业展会传播 / 产品亮点展示</div>
+      </div>
+    </a>
+
+    <a class="mag-card medium" href="https://mp.weixin.qq.com/s/WN9-Qf-tjBdAQ_B_RekUnw" target="_blank" rel="noopener noreferrer">
+      <img class="mag-cover" alt="与道同行 携手共赢 | 2025道达尔能源作物保护经销商会议圆满落幕" src="https://img.heliar.top/file/1773831042559_image.png">
+      <div class="mag-info">
+        <span class="mag-index">WeChat Article 02</span>
+        <div class="mag-title">与道同行 携手共赢 | 2025道达尔能源作物保护经销商会议圆满落幕</div>
+        <div class="mag-desc">活动回顾 / 会议传播 / 公众号排版</div>
+      </div>
+    </a>
+
+    <a class="mag-card medium" href="https://mp.weixin.qq.com/s/yw2RrWy8ov9MV3W6iQogHA" target="_blank" rel="noopener noreferrer">
+      <img class="mag-cover" alt="为梦想加满能量，道达尔能源携手铁娘子车队出征2025勒芒24小时耐力赛！" src="https://img.heliar.top/file/1773831125293_image.png">
+      <div class="mag-info">
+        <span class="mag-index">WeChat Article 03</span>
+        <div class="mag-title">为梦想加满能量，道达尔能源携手铁娘子车队出征2025勒芒24小时耐力赛！</div>
+        <div class="mag-desc">赛事传播 / 品牌内容 / 封面设计</div>
+      </div>
+    </a>
+
+    <a class="mag-card short" href="https://mp.weixin.qq.com/s/mgPvQkCOYrRhfLeScNIrHA" target="_blank" rel="noopener noreferrer">
+      <img class="mag-cover" alt="3v3羽道飞驰季丨燃炸赛场，冠军降临！赛场移步福州南京" src="https://img.heliar.top/file/1773831256357_eeea6f202c39d916c65fa312c0b88305.jpeg">
+      <div class="mag-info">
+        <span class="mag-index">WeChat Article 04</span>
+        <div class="mag-title">3v3羽道飞驰季丨燃炸赛场，冠军降临！赛场移步福州南京</div>
+        <div class="mag-desc">活动宣传 / 体育赛事传播 / 图文运营</div>
+      </div>
+    </a>
+
+    <a class="mag-card short" href="https://img.heliar.top/file/1773831362674_4711773831346_.pic.jpg" target="_blank" rel="noopener noreferrer">
+      <img class="mag-cover" alt="与道同行丨道达尔能源携手GT世界挑战赛竞速北京，文末互动赢运动好礼" src="https://img.heliar.top/file/1773831362674_4711773831346_.pic.jpg">
+      <div class="mag-info">
+        <span class="mag-index">WeChat Article 05</span>
+        <div class="mag-title">与道同行丨道达尔能源携手GT世界挑战赛竞速北京，文末互动赢运动好礼</div>
+        <div class="mag-desc">赛事内容 / 互动传播 / 品牌推文</div>
+      </div>
+    </a>
+
+    <a class="mag-card tall" href="https://img.heliar.top/file/1773831505354_4721773831488_.pic.jpg" target="_blank" rel="noopener noreferrer">
+      <img class="mag-cover" alt="与道同行丨勒芒24小时，蓄势待发！" src="https://img.heliar.top/file/1773831505354_4721773831488_.pic.jpg">
+      <div class="mag-info">
+        <span class="mag-index">WeChat Article 06</span>
+        <div class="mag-title">与道同行丨勒芒24小时，蓄势待发！</div>
+        <div class="mag-desc">赛事预热 / 品牌传播 / 图文排版</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="other-works-section" id="otherWorks">
+  <div class="logo-proposal-wrap">
+    <h2 class="section-page-title">会徽设计方案</h2>
+    <p class="section-page-sub">
+      以会议主题识别、视觉传播性与正式场景应用为核心，展示会徽设计的方案提炼、版式呈现与提案表达。
+    </p>
+
+    <div class="logo-hero-card logo-open-gallery">
+      <div class="logo-hero-glow"></div>
+      <img
+        src="https://img.heliar.top/file/1773832235034_幻灯片13.png"
+        alt="会徽设计方案主视觉"
+        class="logo-hero-img"
+      />
+      <div class="logo-hero-info">
+        <div class="logo-hero-tag">Logo Proposal</div>
+        <h3>会徽设计提案展示</h3>
+        <p>
+          结合会议属性与传播场景进行会徽方案设计，注重图形识别度、版面呈现与实际应用展示，
+          形成更完整的视觉提案表达。
+        </p>
+        <button class="logo-open-btn" type="button">查看完整方案</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="slide-popup">
+  <div class="popup-content">
+    <span class="popup-close">&times;</span>
+    <div id="popup-carousel">
+      <div class="carousel-inner"></div>
+      <div class="carousel-arrow left-arrow">&#10094;</div>
+      <div class="carousel-arrow right-arrow">&#10095;</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-note">
+  FIONA HUANG PORTFOLIO · Resume Style Web Presentation
+</div>
+
+<script>
+// 平滑导航
+document.querySelectorAll('.nav a').forEach(link=>{
+  link.addEventListener('click', function(e){
+    const targetId = this.getAttribute('href');
+    if(targetId && targetId.startsWith('#')){
+      e.preventDefault();
+      const target = document.querySelector(targetId);
+      if(target){
+        const y = target.getBoundingClientRect().top + window.pageYOffset - 88;
+        window.scrollTo({top:y, behavior:'smooth'});
+      }
+    }
+  });
+});
+
+// 鼠标光
+const light=document.querySelector(".cursor-light");
+const core=document.querySelector(".cursor-core");
+let x=0,y=0,tx=0,ty=0;
+document.addEventListener("mousemove",e=>{tx=e.clientX;ty=e.clientY;});
+function animateCursor(){
+  x+=(tx-x)*0.08;
+  y+=(ty-y)*0.08;
+  if(light && core){
+    light.style.left=x+'px'; light.style.top=y+'px';
+    core.style.left=x+'px'; core.style.top=y+'px';
+  }
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+// 第二页展开
+function toggle(id,data){
+  const el=document.getElementById(id);
+  if(!el) return;
+  el.onclick=function(){
+    let next=this.nextElementSibling;
+    if(next && next.classList.contains('sub-cards')) {
+      next.remove();
+    }else{
+      const box=document.createElement('div');
+      box.className='sub-cards';
+      data.forEach(d=>{
+        const div=document.createElement('div');
+        div.className='sub-card';
+        div.innerHTML=`<div class="icon">${d[0]}</div><div class="sub-title">${d[1]}</div>`;
+        box.appendChild(div);
+      });
+      this.parentNode.insertBefore(box,this.nextSibling);
+    }
+  }
+}
+toggle('job1',[
+  ["⚙️","产品开发与全生命周期管理"],
+  ["🎯","市场活动策划与执行"],
+  ["📊","市场调研与数据分析"],
+  ["📱","新媒体运营与内容创作"]
+]);
+toggle('job2',[
+  ["🧠","问卷设计与逻辑控制"],
+  ["👥","样本筛选与讨论执行"],
+  ["📍","调研流程跟进与项目协作"],
+  ["📝","结论整理与报告支持"]
+]);
+toggle('job3',[
+  ["🎪","主题活动策划"],
+  ["📣","传播运营与现场执行"],
+  ["🤝","资源协调与对接"],
+  ["🎨","视觉物料统筹"]
+]);
+toggle('job4',[
+  ["🏛️","空间与展陈设计"],
+  ["🔗","跨团队协作执行"],
+  ["🎥","媒体内容策划与视觉"],
+  ["🧭","展览导引与解说"]
+]);
+
+// 鼠标光颜色切换
+window.addEventListener("scroll",()=>{
+  const about=document.querySelector(".section");
+  if(!about || !light || !core) return;
+  const aboutTop=about.offsetTop;
+  const projectsTop=document.querySelector(".projects-section").offsetTop;
+
+  if(window.scrollY > aboutTop-220 && window.scrollY < projectsTop-120){
+    light.style.background="radial-gradient(circle,rgba(255,255,255,0.34),transparent 70%)";
+    core.style.background="radial-gradient(circle,rgba(255,255,255,0.92),transparent 70%)";
+  }else{
+    light.style.background="radial-gradient(circle,rgba(0,47,167,0.42),transparent 70%)";
+    core.style.background="radial-gradient(circle,rgba(0,47,167,0.92),transparent 70%)";
+  }
+});
+
+// 项目卡片轮换
+const slides=document.querySelectorAll('.slide-card');
+let current=0;
+function updateSlides(){
+  slides.forEach((s,i)=>{
+    let offset=i-current;
+    if(offset > 2) offset -= slides.length;
+    if(offset < -2) offset += slides.length;
+    let z=10-Math.abs(offset);
+    if(z<1) z=1;
+    s.style.zIndex=z;
+    s.style.left=`calc(50% + ${offset*108}px)`;
+    s.style.top='50%';
+    s.style.transform=`translate(-50%,-50%) scale(${offset===0?1:0.9}) rotate(${offset* -3.2}deg)`;
+    s.style.opacity=Math.abs(offset)>2?0:1;
+    s.style.pointerEvents=Math.abs(offset)>2?'none':'auto';
+  });
+}
+slides.forEach(s=>{
+  s.addEventListener('mouseenter',()=>{
+    current=parseInt(s.dataset.index);
+    updateSlides();
+  });
+});
+updateSlides();
+
+document.querySelector('.slide-arrow.left').addEventListener('click',()=>{
+  current=(current-1+slides.length)%slides.length;
+  updateSlides();
+});
+document.querySelector('.slide-arrow.right').addEventListener('click',()=>{
+  current=(current+1)%slides.length;
+  updateSlides();
+});
+
+let isDragging=false,startX=0;
+const slidesContainer=document.querySelector('.slides-container');
+slidesContainer.addEventListener('mousedown',e=>{
+  isDragging=true;
+  startX=e.clientX;
+});
+document.addEventListener('mousemove',e=>{
+  if(!isDragging) return;
+  const dx=e.clientX-startX;
+  if(dx>70){
+    current=(current-1+slides.length)%slides.length;
+    updateSlides();
+    startX=e.clientX;
+  }else if(dx<-70){
+    current=(current+1)%slides.length;
+    updateSlides();
+    startX=e.clientX;
+  }
+});
+document.addEventListener('mouseup',()=>{isDragging=false;});
+
+let touchStartX=0;
+slidesContainer.addEventListener('touchstart',e=>{
+  touchStartX=e.touches[0].clientX;
+},{passive:true});
+slidesContainer.addEventListener('touchmove',e=>{
+  const dx=e.touches[0].clientX-touchStartX;
+  if(dx>70){
+    current=(current-1+slides.length)%slides.length;
+    updateSlides();
+    touchStartX=e.touches[0].clientX;
+  }else if(dx<-70){
+    current=(current+1)%slides.length;
+    updateSlides();
+    touchStartX=e.touches[0].clientX;
+  }
+},{passive:true});
+
+// 通用弹窗
+const popup=document.getElementById('slide-popup');
+const carouselInner=document.querySelector('#popup-carousel .carousel-inner');
+const leftArrow=document.querySelector('.left-arrow');
+const rightArrow=document.querySelector('.right-arrow');
+const popupClose=document.querySelector('#slide-popup .popup-close');
+let carouselIndex=0;
+
+function openImagePopup(images){
+  carouselInner.innerHTML = "";
+  (images || []).forEach(src=>{
+    const img=document.createElement('img');
+    img.src=src;
+    img.alt="gallery image";
+    carouselInner.appendChild(img);
+  });
+  carouselIndex = 0;
+  carouselInner.style.transform='translateX(0)';
+  popup.style.display='flex';
+  document.body.style.overflow='hidden';
+}
+function closePopup(){
+  popup.style.display='none';
+  document.body.style.overflow='';
+}
+leftArrow.addEventListener('click',()=>{
+  if(carouselIndex>0){
+    carouselIndex--;
+    carouselInner.style.transform=`translateX(-${carouselIndex*100}%)`;
+  }
+});
+rightArrow.addEventListener('click',()=>{
+  if(carouselIndex<carouselInner.children.length-1){
+    carouselIndex++;
+    carouselInner.style.transform=`translateX(-${carouselIndex*100}%)`;
+  }
+});
+popupClose.addEventListener('click',closePopup);
+popup.addEventListener('click',e=>{
+  if(e.target===popup) closePopup();
+});
+document.addEventListener('keydown',e=>{
+  if(e.key === 'Escape') closePopup();
+});
+
+const projectImageSets = {
+  0: [
+    "https://img.heliar.top/file/1773827930699_1.jpg",
+    "https://img.heliar.top/file/1773827926807_2.jpg",
+    "https://img.heliar.top/file/1773827922170_3.jpg"
+  ],
+  1: [
+    "https://img.heliar.top/file/1773812755071_幻灯片5.png",
+    "https://img.heliar.top/file/1773812795421_幻灯片6.png",
+    "https://img.heliar.top/file/1773812859386_幻灯片7.png",
+    "https://img.heliar.top/file/1773812873457_幻灯片8.png"
+  ],
+  2: [
+    "https://img.heliar.top/file/1773825469855_1.png",
+    "https://img.heliar.top/file/1773825450300_2.png",
+    "https://img.heliar.top/file/1773825445092_3.png",
+    "https://img.heliar.top/file/1773825466864_4.png",
+    "https://img.heliar.top/file/1773825441760_5.png"
+  ],
+  3: [
+    "https://img.heliar.top/file/1773828702637_幻灯片9.png"
+  ]
+};
+
+slides.forEach((slide, index)=>{
+  slide.addEventListener('click', ()=>{
+    if(projectImageSets[index]){
+      openImagePopup(projectImageSets[index]);
+    }
+  });
+});
+
+// 会徽方案弹窗
+const logoProposalImages = [
+  "https://img.heliar.top/file/1773832235034_幻灯片13.png",
+  "https://img.heliar.top/file/1773832241352_幻灯片14.png",
+  "https://img.heliar.top/file/1773832238667_幻灯片15.png"
+];
+document.querySelectorAll('.logo-open-gallery').forEach(item=>{
+  item.addEventListener('click', ()=>{
+    openImagePopup(logoProposalImages);
+  });
+});
+
+// 第一屏粒子
+(function(){
+  const wrap = document.getElementById('heroParticleWrap');
+  const canvas = document.getElementById('heroParticleCanvas');
+  const ctx = canvas.getContext('2d');
+  const title = document.getElementById('heroTitle');
+  const wordEl = title.querySelector('.title-word');
+  if(!wrap || !canvas || !ctx || !wordEl) return;
+
+  let dpr = Math.min(window.devicePixelRatio || 1, 2);
+  let particles = [];
+  let mouse = { x: null, y: null, active: false };
+  let lastScatterTime = 0;
+
+  function resizeCanvas(){
+    const rect = wrap.getBoundingClientRect();
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    canvas.style.width = rect.width + 'px';
+    canvas.style.height = rect.height + 'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    buildParticles();
+  }
+
+  function buildParticles(){
+    particles = [];
+    const wrapRect = wrap.getBoundingClientRect();
+    const wordRect = wordEl.getBoundingClientRect();
+
+    const areaX = wordRect.left - wrapRect.left;
+    const areaY = wordRect.top - wrapRect.top;
+    const areaW = wordRect.width;
+    const areaH = wordRect.height;
+
+    const expandX = Math.max(120, areaW * 0.16);
+    const expandY = Math.max(70, areaH * 0.7);
+
+    const startX = areaX - expandX;
+    const startY = areaY - expandY;
+    const fullW = areaW + expandX * 2;
+    const fullH = areaH + expandY * 2;
+
+    const count = Math.max(260, Math.floor(fullW * fullH / 2400));
+
+    for(let i=0;i<count;i++){
+      const px = startX + Math.random() * fullW;
+      const py = startY + Math.random() * fullH;
+      const nx = (px - (areaX + areaW/2)) / (fullW/2);
+      const ny = (py - (areaY + areaH/2)) / (fullH/2);
+      const dist = Math.sqrt(nx*nx + ny*ny);
+      if(Math.random() < dist * 0.28) continue;
+
+      const edgeBias = Math.random();
+      particles.push({
+        x:px,y:py,ox:px,oy:py,
+        vx:(Math.random() - 0.5) * 0.3,
+        vy:(Math.random() - 0.5) * 0.3,
+        size: edgeBias > 0.72 ? Math.random() * 3.2 + 1.2 : Math.random() * 2 + 0.5,
+        alpha: edgeBias > 0.72 ? Math.random() * 0.45 + 0.18 : Math.random() * 0.22 + 0.08,
+        phase:Math.random() * Math.PI * 2,
+        drift:Math.random() * 0.9 + 0.2,
+        edge: edgeBias > 0.72
+      });
+    }
+  }
+
+  function scatter(boost = 1){
+    const now = Date.now();
+    if(now - lastScatterTime < 100) return;
+    lastScatterTime = now;
+    particles.forEach(p=>{
+      const angle = Math.random() * Math.PI * 2;
+      const force = (Math.random() * 3 + 1.2) * boost * (p.edge ? 1.35 : 1);
+      p.vx += Math.cos(angle) * force;
+      p.vy += Math.sin(angle) * force;
+    });
+  }
+
+  function update(){
+    const rect = wrap.getBoundingClientRect();
+    ctx.clearRect(0,0,rect.width,rect.height);
+
+    particles.forEach((p,i)=>{
+      p.phase += 0.018;
+      const floatX = Math.cos(p.phase + i * 0.2) * 0.12 * p.drift;
+      const floatY = Math.sin(p.phase * 1.2 + i * 0.15) * 0.12 * p.drift;
+
+      p.vx += (p.ox - p.x) * 0.008;
+      p.vy += (p.oy - p.y) * 0.008;
+      p.vx *= 0.945;
+      p.vy *= 0.945;
+
+      if(mouse.active && mouse.x !== null && mouse.y !== null){
+        const dx = p.x - mouse.x;
+        const dy = p.y - mouse.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        const radius = 150;
+        if(dist < radius && dist > 0.001){
+          const force = (1 - dist / radius) * (p.edge ? 2.3 : 1.4);
+          p.vx += (dx / dist) * force;
+          p.vy += (dy / dist) * force;
+        }
+      }
+
+      p.x += p.vx + floatX;
+      p.y += p.vy + floatY;
+
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(0,47,167,${p.alpha})`;
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fill();
+
+      if(p.edge){
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(0,47,167,${p.alpha * 0.12})`;
+        ctx.arc(p.x, p.y, p.size * 2.4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    });
+
+    requestAnimationFrame(update);
+  }
+
+  wrap.addEventListener('mouseenter', ()=>{
+    wrap.classList.add('active');
+    scatter(1.8);
+  });
+  wrap.addEventListener('mouseleave', ()=>{
+    wrap.classList.remove('active');
+    mouse.active = false;
+    mouse.x = null;
+    mouse.y = null;
+  });
+  wrap.addEventListener('mousemove', (e)=>{
+    const rect = wrap.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+    mouse.active = true;
+  });
+  wrap.addEventListener('click', ()=>{ scatter(2.5); });
+  window.addEventListener('resize', resizeCanvas);
+
+  resizeCanvas();
+  update();
+  setTimeout(()=>scatter(1.2), 250);
+})();
+</script>
+</body>
+</html>
