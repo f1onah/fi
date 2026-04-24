@@ -662,9 +662,7 @@ body{
   margin-top:34px;
   border-radius:32px;
   overflow:hidden;
-  background:rgba(255,255,255,.76);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
+  background:#fff;
   border:1px solid rgba(0,47,167,.08);
   box-shadow:0 18px 40px rgba(0,47,167,.10);
 }
@@ -743,14 +741,55 @@ body{
   position:relative;
   width:100%;
   height:min(78vh, 980px);
-  background:#dfe8ff;
+  padding:18px;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  background:#e8eefb;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
 }
-.proposal-viewer iframe{
-  width:100%;
-  height:100%;
+.proposal-viewer iframe,
+.proposal-viewer img{
+  width:min(100%, 1080px);
+  height:auto;
   border:none;
   display:block;
+  margin:0 auto;
   background:#fff;
+  opacity:1;
+  transform:none;
+  animation:none;
+  transition:none;
+  will-change:auto;
+  backface-visibility:hidden;
+  box-shadow:0 10px 26px rgba(0,32,102,.10);
+}
+.proposal-viewer img + img{
+  border-top:none;
+}
+.proposal-mobile-fallback{
+  display:none;
+  padding:34px 24px 38px;
+  background:linear-gradient(180deg, rgba(247,250,255,.96), rgba(239,245,255,.96));
+  border-top:1px solid rgba(0,47,167,.08);
+  text-align:center;
+}
+.proposal-mobile-copy{
+  max-width:560px;
+  margin:0 auto;
+}
+.proposal-mobile-copy p{
+  color:#5f709c;
+  font-size:14px;
+  line-height:1.8;
+}
+.proposal-mobile-actions{
+  margin-top:18px;
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
 }
 .proposal-bottom{
   display:grid;
@@ -789,7 +828,8 @@ body{
   .proposal-doc-title{font-size:20px;}
   .proposal-actions{width:100%;}
   .proposal-btn{flex:1;}
-  .proposal-viewer{height:68vh;}
+  .proposal-viewer{height:72vh;padding:12px;gap:12px;}
+  .proposal-mobile-fallback{display:none;}
   .proposal-bottom{grid-template-columns:1fr;padding:14px;}
 }
 
@@ -1155,7 +1195,7 @@ body{
         <div class="visual-side">
           <div class="portrait-wrap">
             <div class="portrait">
-              <img src="https://img.heliar.top/file/1773825464738_主题_15.png" alt="主题_15.png">
+              <img src="./IMG_8567.JPG" alt="黄菲菲个人照片">
             </div>
           </div>
         </div>
@@ -1282,33 +1322,46 @@ body{
 <section class="proposal-section" id="proposal">
   <div class="proposal-wrap">
     <h2 class="section-page-title">策划案展示</h2>
-    <p class="section-page-sub">收录液冷展会与研讨会两套策划案，支持在页面内直接预览完整 PDF 内容。</p>
+    <p class="section-page-sub">收录液冷展会与研讨会两套策划案长图，方便在手机与电脑端直接浏览完整内容。</p>
 
     <div class="proposal-shell">
       <div class="proposal-topbar">
         <div class="proposal-top-left">
-          <div class="proposal-label">Planning Proposal PDF</div>
+          <div class="proposal-label">Planning Proposal</div>
           <div class="proposal-doc-title">智冷未来 绿色算力｜道达尔能源 x 2025 CDCE 国际数据中心展</div>
-          <div class="proposal-doc-meta">液冷展会策划案 · PDF 内嵌展示</div>
+          <div class="proposal-doc-meta">液冷展会策划案 · 长图展示</div>
         </div>
       </div>
 
       <div class="proposal-viewer">
-        <iframe src="./液冷展会策划案.pdf#view=FitH" title="液冷展会策划案 PDF 预览"></iframe>
+        <img src="./液冷展会策划案/a.jpeg" alt="液冷展会策划案第1页" loading="eager" decoding="sync">
+        <img src="./液冷展会策划案/b.jpeg" alt="液冷展会策划案第2页" loading="eager" decoding="sync">
+        <img src="./液冷展会策划案/c.jpeg" alt="液冷展会策划案第3页" loading="eager" decoding="sync">
+        <img src="./液冷展会策划案/d.jpeg" alt="液冷展会策划案第4页" loading="eager" decoding="sync">
+        <img src="./液冷展会策划案/e.jpeg" alt="液冷展会策划案第5页" loading="eager" decoding="sync">
+        <img src="./液冷展会策划案/f.jpeg" alt="液冷展会策划案第6页" loading="eager" decoding="sync">
+        <img src="./液冷展会策划案/g.jpeg" alt="液冷展会策划案第7页" loading="eager" decoding="sync">
+        <img src="./液冷展会策划案/h.jpeg" alt="液冷展会策划案第8页" loading="eager" decoding="sync">
+        <img src="./液冷展会策划案/i.jpeg" alt="液冷展会策划案第9页" loading="eager" decoding="sync">
       </div>
     </div>
 
     <div class="proposal-shell">
       <div class="proposal-topbar">
         <div class="proposal-top-left">
-          <div class="proposal-label">Seminar Proposal PDF</div>
+          <div class="proposal-label">Seminar Proposal</div>
           <div class="proposal-doc-title">研讨会策划案展示</div>
-          <div class="proposal-doc-meta">研讨会策划案 · PDF 内嵌展示</div>
+          <div class="proposal-doc-meta">研讨会策划案 · 长图展示</div>
         </div>
       </div>
 
       <div class="proposal-viewer">
-        <iframe src="./研讨会策划案.pdf#view=FitH" title="研讨会策划案 PDF 预览"></iframe>
+        <img src="./研讨会策划案/幻灯片1.jpeg" alt="研讨会策划案第1页" loading="eager" decoding="sync">
+        <img src="./研讨会策划案/幻灯片2.jpeg" alt="研讨会策划案第2页" loading="eager" decoding="sync">
+        <img src="./研讨会策划案/幻灯片3.jpeg" alt="研讨会策划案第3页" loading="eager" decoding="sync">
+        <img src="./研讨会策划案/幻灯片4.jpeg" alt="研讨会策划案第4页" loading="eager" decoding="sync">
+        <img src="./研讨会策划案/幻灯片5.jpeg" alt="研讨会策划案第5页" loading="eager" decoding="sync">
+        <img src="./研讨会策划案/幻灯片6.jpeg" alt="研讨会策划案第6页" loading="eager" decoding="sync">
       </div>
     </div>
   </div>
