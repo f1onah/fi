@@ -213,143 +213,219 @@ body{
 
 /* 第二页 */
 .section{
-  padding:18px 8% 120px;
+  padding:0;
+  height:100vh;
   background:
-    radial-gradient(circle at 12% 14%, rgba(255,255,255,.12), transparent 22%),
-    radial-gradient(circle at 88% 20%, rgba(255,255,255,.08), transparent 18%),
-    linear-gradient(180deg, #002FA7 0%, #00278d 55%, #00236f 100%);
+    radial-gradient(circle at 18% 18%, rgba(255,255,255,.14), transparent 18%),
+    radial-gradient(circle at 82% 16%, rgba(255,255,255,.08), transparent 16%),
+    radial-gradient(circle at 76% 74%, rgba(255,255,255,.06), transparent 24%),
+    linear-gradient(135deg, #00174f 0%, #00268d 46%, #0037c7 100%);
   color:#fff;
   position:relative;
   overflow:hidden;
   margin-top:-38px;
 }
-.marquee-container{
-  width:100%;
-  overflow:hidden;
-  white-space:nowrap;
+.about-stage::before{
+  content:"";
   position:absolute;
-  top:18px;
-  left:0;
-  opacity:.10;
+  inset:0;
+  background:linear-gradient(90deg, rgba(255,255,255,.04), transparent 20%, transparent 80%, rgba(255,255,255,.03));
   pointer-events:none;
 }
-.marquee{
-  display:inline-block;
-  animation:marquee 18s linear infinite;
-  font-family:'Sora',sans-serif;
-  font-size:68px;
-  font-weight:800;
-  letter-spacing:.08em;
-}
-@keyframes marquee{
-  0%{transform:translateX(0);}
-  100%{transform:translateX(-50%);}
-}
-.resume-top{
-  display:grid;
-  grid-template-columns:1.08fr 1.12fr;
-  gap:28px;
-  align-items:stretch;
-  margin-top:0;
-  margin-bottom:46px;
-}
-.profile-card,.skill-box{
-  background:rgba(255,255,255,.08);
+.about-hint{
+  position:absolute;
+  top:22px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:20;
+  padding:10px 16px;
+  border-radius:999px;
+  background:rgba(255,255,255,.10);
   border:1px solid rgba(255,255,255,.16);
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-  border-radius:28px;
-  box-shadow:var(--shadow);
+  font-size:12px;
+  letter-spacing:.16em;
+  color:rgba(255,255,255,.82);
+  white-space:nowrap;
 }
-.profile-card{
-  padding:30px;
+.about-nav-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:25;
+  width:52px;
+  height:52px;
+  border:none;
+  border-radius:50%;
+  background:rgba(255,255,255,.92);
+  color:var(--blue);
+  font-size:28px;
+  cursor:pointer;
+  box-shadow:0 12px 30px rgba(0,0,0,.18);
+}
+.about-nav-btn.left{left:18px;}
+.about-nav-btn.right{right:18px;}
+.about-dots{
+  position:absolute;
+  left:50%;
+  bottom:26px;
+  transform:translateX(-50%);
+  z-index:20;
   display:flex;
-  gap:24px;
-  align-items:center;
-  min-height:420px;
+  gap:10px;
 }
-.photo-wrap{
+.about-dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:rgba(255,255,255,.28);
+  transition:.3s ease;
+}
+.about-dot.active{
+  background:#fff;
+  transform:scale(1.2);
+}
+.about-slider{
+  width:100%;
+  height:100%;
+  display:flex;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  -ms-overflow-style:none;
+  scrollbar-width:none;
+}
+.about-slider::-webkit-scrollbar{display:none;}
+.about-screen{
+  width:100vw;
+  min-width:100vw;
+  height:100vh;
+  flex:0 0 100vw;
+  scroll-snap-align:start;
+  padding:8vh 6vw 10vh;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
   position:relative;
-  width:340px;
-  height:340px;
-  flex-shrink:0;
+  overflow-y:auto;
+  overflow-x:hidden;
+}
+.personal-wrap{
+  width:min(1400px, 88vw);
+  display:grid;
+  grid-template-columns:.95fr 1.05fr;
+  gap:34px;
+  align-items:center;
+}
+.visual-side{
+  min-height:560px;
+  position:relative;
   display:flex;
   align-items:center;
   justify-content:center;
-  margin:auto;
 }
-.personal-photo{
-  width:260px;
-  height:320px;
+.visual-side::before{
+  content:"";
+  position:absolute;
+  width:72%;
+  height:82%;
+  border-radius:34px;
+  border:1px solid rgba(255,255,255,.14);
+  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  box-shadow:0 24px 70px rgba(0,0,0,.22);
+  transform:translate(-22px, 18px);
+}
+.portrait-wrap{
+  position:relative;
+  width:min(440px, 78%);
+  aspect-ratio:.82;
+  border-radius:999px;
+  padding:20px;
+  background:linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.04));
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 24px 70px rgba(0,0,0,.22);
+}
+.portrait{
+  width:100%;
+  height:100%;
   border-radius:999px;
   overflow:hidden;
   background:#fff;
-  box-shadow:0 18px 40px rgba(0,0,0,.22);
-  position:relative;
-  z-index:3;
 }
-.personal-photo img{
+.portrait img{
   width:100%;
   height:100%;
   object-fit:cover;
   object-position:center;
+  transform:scale(1.06);
   display:block;
-  transform:scale(1.08);
 }
-.personal-text{
+.info-side{
   display:flex;
   flex-direction:column;
+  justify-content:center;
+  gap:24px;
+  min-height:560px;
 }
-.personal-text h3{
+.name{
   font-family:'Sora',sans-serif;
-  font-size:44px;
+  font-size:clamp(42px,5vw,78px);
   font-weight:800;
-  margin-bottom:14px;
   line-height:1;
+  letter-spacing:.02em;
 }
-.personal-text p{
-  font-size:18px;
-  line-height:1.9;
+.meta{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  font-size:clamp(17px,1.45vw,22px);
+  line-height:1.8;
+  color:rgba(255,255,255,.78);
 }
 .email{
-  font-size:16px;
-  margin-top:10px;
-  opacity:.92;
+  font-size:15px;
+  letter-spacing:.12em;
+  color:rgba(255,255,255,.9);
+  text-transform:uppercase;
+  margin-top:2px;
 }
-.skill-box{
-  padding:30px 32px;
-  color:#fff;
+.info-board{
+  margin-top:8px;
+  padding:26px;
+  border-radius:32px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 24px 70px rgba(0,0,0,.22);
 }
-.skill-box h4{
-  font-family:'Sora',sans-serif;
-  font-size:26px;
-  font-weight:800;
-  margin-bottom:18px;
-}
-.skill-grid{
+.chip-grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:14px;
 }
-.skill-item{
-  padding:16px 16px;
-  border-radius:18px;
-  background:rgba(255,255,255,.07);
+.chip{
+  min-height:78px;
+  display:flex;
+  align-items:center;
+  padding:18px;
+  border-radius:22px;
+  background:rgba(255,255,255,.06);
   border:1px solid rgba(255,255,255,.10);
-}
-.skill-item strong{
-  display:block;
-  font-size:14px;
-  letter-spacing:1px;
-  margin-bottom:8px;
-}
-.skill-item span{
-  display:block;
   font-size:14px;
   line-height:1.75;
-  opacity:.92;
+  color:rgba(255,255,255,.92);
 }
-.resume-block{margin-top:8px;}
+.about-panel{
+  width:min(1280px, 88vw);
+  min-height:76vh;
+  max-height:82vh;
+  border-radius:36px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 24px 70px rgba(0,0,0,.22);
+  padding:42px;
+  overflow-y:auto;
+  overflow-x:hidden;
+}
 .resume-title{
   display:flex;
   align-items:center;
@@ -357,7 +433,7 @@ body{
   font-family:'Sora',sans-serif;
   font-size:24px;
   font-weight:700;
-  margin:34px 0 22px;
+  margin:0 0 22px;
 }
 .resume-title::before{
   content:"";
@@ -376,14 +452,13 @@ body{
   border-radius:24px;
   padding:24px 28px;
   color:#002FA7;
-  cursor:pointer;
-  transition:.35s ease;
   box-shadow:0 12px 30px rgba(0,0,0,.08);
   border:1px solid rgba(255,255,255,.4);
+  cursor:pointer;
 }
 .job-card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 22px 40px rgba(0,0,0,.12);
+  transform:translateY(-3px);
+  box-shadow:0 18px 36px rgba(0,0,0,.12);
 }
 .job-topline{
   display:flex;
@@ -413,21 +488,20 @@ body{
   white-space:nowrap;
 }
 .sub-cards{
-  display:grid;
+  display:none;
   grid-template-columns:repeat(4,1fr);
   gap:14px;
   margin-top:14px;
 }
+.sub-cards.open{display:grid;}
 .sub-card{
   background:linear-gradient(145deg,#fff,#eef3ff);
   border-radius:18px;
   padding:18px;
   text-align:left;
   color:#002FA7;
-  transition:.35s ease;
   border:1px solid rgba(0,47,167,.06);
 }
-.sub-card:hover{transform:translateY(-4px);}
 .icon{font-size:24px;margin-bottom:10px;}
 .sub-title{font-size:14px;line-height:1.6;font-weight:500;}
 
@@ -468,7 +542,7 @@ body{
 }
 .slides-container{
   position:relative;
-  height:610px;
+  height:560px;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -477,8 +551,9 @@ body{
 .slide-card{
   background:#002FA7;
   border-radius:28px;
-  width:280px;
-  height:430px;
+  width:min(640px, 68vw);
+  aspect-ratio:16/9;
+  height:auto;
   position:absolute;
   top:50%;
   color:#fff;
@@ -559,6 +634,164 @@ body{
 }
 .slide-arrow.left{left:0;}
 .slide-arrow.right{right:0;}
+
+
+/* 新增页：策划案展示 */
+.proposal-section{
+  padding:110px 8% 120px;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(0,47,167,.08), transparent 18%),
+    radial-gradient(circle at 84% 18%, rgba(0,47,167,.06), transparent 16%),
+    linear-gradient(180deg, #f7faff 0%, #eef4ff 100%);
+  position:relative;
+  overflow:hidden;
+}
+.proposal-section::before{
+  content:"";
+  position:absolute;
+  width:560px;
+  height:560px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(0,47,167,.08), transparent 70%);
+  right:-120px;
+  top:-160px;
+  filter:blur(18px);
+}
+.proposal-wrap{position:relative;z-index:2;}
+.proposal-shell{
+  margin-top:34px;
+  border-radius:32px;
+  overflow:hidden;
+  background:rgba(255,255,255,.76);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(0,47,167,.08);
+  box-shadow:0 18px 40px rgba(0,47,167,.10);
+}
+.proposal-topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:20px 24px;
+  border-bottom:1px solid rgba(0,47,167,.08);
+  background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(245,249,255,.92));
+}
+.proposal-top-left{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.proposal-label{
+  display:inline-flex;
+  align-self:flex-start;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(0,47,167,.08);
+  color:var(--blue);
+  font-size:12px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+.proposal-doc-title{
+  font-family:'Sora',sans-serif;
+  color:var(--blue);
+  font-size:24px;
+  line-height:1.35;
+  font-weight:700;
+}
+.proposal-doc-meta{
+  color:#6174a3;
+  font-size:14px;
+  line-height:1.7;
+}
+.proposal-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.proposal-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:12px 18px;
+  border-radius:999px;
+  text-decoration:none;
+  font-size:14px;
+  transition:.3s ease;
+  border:1px solid rgba(0,47,167,.1);
+}
+.proposal-btn.primary{
+  background:var(--blue);
+  color:#fff;
+  border-color:transparent;
+}
+.proposal-btn.primary:hover{
+  transform:translateY(-2px);
+  background:#001f78;
+}
+.proposal-btn.secondary{
+  background:#fff;
+  color:var(--blue);
+}
+.proposal-btn.secondary:hover{
+  transform:translateY(-2px);
+  background:#f5f8ff;
+}
+.proposal-viewer{
+  position:relative;
+  width:100%;
+  height:min(78vh, 980px);
+  background:#dfe8ff;
+}
+.proposal-viewer iframe{
+  width:100%;
+  height:100%;
+  border:none;
+  display:block;
+  background:#fff;
+}
+.proposal-bottom{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:14px;
+  padding:18px 20px 22px;
+  background:linear-gradient(180deg, rgba(247,250,255,.96), rgba(239,245,255,.96));
+  border-top:1px solid rgba(0,47,167,.08);
+}
+.proposal-note{
+  padding:16px 18px;
+  border-radius:18px;
+  background:#fff;
+  border:1px solid rgba(0,47,167,.06);
+}
+.proposal-note strong{
+  display:block;
+  color:var(--blue);
+  font-size:14px;
+  margin-bottom:6px;
+}
+.proposal-note span{
+  display:block;
+  color:#5f709c;
+  font-size:13px;
+  line-height:1.7;
+}
+
+@media(max-width:1100px){
+  .proposal-bottom{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:640px){
+  .proposal-section{padding:72px 20px 90px;}
+  .proposal-shell{border-radius:24px;}
+  .proposal-topbar{padding:16px;flex-direction:column;align-items:flex-start;}
+  .proposal-doc-title{font-size:20px;}
+  .proposal-actions{width:100%;}
+  .proposal-btn{flex:1;}
+  .proposal-viewer{height:68vh;}
+  .proposal-bottom{grid-template-columns:1fr;padding:14px;}
+}
 
 /* 第五页 内容运营 */
 .content-section{
@@ -743,25 +976,21 @@ body{
   padding:20px;
 }
 #slide-popup .popup-content{
-  width:min(1200px,100%);
-  height:min(90vh,860px);
+  width:100vw;
+  height:100vh;
   overflow:hidden;
-  background:rgba(255,255,255,.08);
-  backdrop-filter:blur(24px);
-  -webkit-backdrop-filter:blur(24px);
-  border-radius:28px;
-  border:1px solid rgba(255,255,255,.2);
+  background:rgba(7,18,58,.96);
   position:relative;
-  box-shadow:0 24px 80px rgba(0,0,0,.28);
+  box-shadow:none;
   display:flex;
   justify-content:center;
   align-items:center;
 }
 #slide-popup .popup-close{
   position:absolute;
-  top:16px;
-  right:18px;
-  font-size:32px;
+  top:20px;
+  right:24px;
+  font-size:36px;
   cursor:pointer;
   font-weight:bold;
   z-index:60;
@@ -784,18 +1013,18 @@ body{
   flex-shrink:0;
   object-fit:contain;
   height:100%;
-  padding:54px 34px 30px;
+  padding:72px 64px 54px;
 }
 .carousel-arrow{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  font-size:30px;
+  font-size:34px;
   color:#002FA7;
   background:#fff;
   border-radius:50%;
-  width:50px;
-  height:50px;
+  width:58px;
+  height:58px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -814,8 +1043,8 @@ body{
   letter-spacing:1.2px;
 }
 
+
 @media(max-width:1100px){
-  .resume-top{grid-template-columns:1fr;}
   .sub-cards{grid-template-columns:repeat(2,1fr);}
   .magazine-grid{column-count:2;}
   .logo-hero-card{grid-template-columns:1fr;}
@@ -832,34 +1061,33 @@ body{
   .hero{padding-top:110px;}
   .hero-particle-wrap{height:390px;}
   .title-main .sub,.title-ghost .sub{font-size:14px;letter-spacing:4px;}
-  .profile-card{
-    flex-direction:column;
-    align-items:center;
-    text-align:center;
-    min-height:auto;
+  .personal-wrap{
+    width:min(92vw,760px);
+    grid-template-columns:1fr;
+    gap:20px;
   }
-  .personal-text h3{font-size:36px;}
-  .skill-grid{grid-template-columns:1fr;}
-  .slides-container{height:560px;}
-  .slide-card{width:240px;height:380px;}
+  .visual-side,.info-side{min-height:auto;}
+  .visual-side::before{display:none;}
+  .portrait-wrap{width:min(360px,72vw);margin:0 auto;}
+  .info-side{gap:18px;text-align:center;}
+  .chip-grid{grid-template-columns:1fr;}
+  .about-panel{width:min(92vw,760px);padding:24px;border-radius:28px;}
+  .about-nav-btn{display:none;}
+  .about-hint{top:14px;font-size:11px;letter-spacing:.12em;}
+  .slides-container{height:520px;}
+  .slide-card{width:min(62vw, 360px);}
 }
 @media(max-width:640px){
   .cursor-light,.cursor-core{display:none;}
-  .section{padding:18px 20px 86px;}
+  .section{padding:0;height:100vh;}
+  .about-screen{padding:84px 20px 90px;}
   .projects-section,.content-section,.other-works-section{padding:72px 20px 90px;}
-  .marquee{font-size:48px;}
-  .profile-card,.skill-box{border-radius:22px;}
-  .profile-card,.skill-box{padding:22px;}
-  .photo-wrap{width:270px;height:270px;}
-  .personal-photo{width:190px;height:240px;}
-  .personal-text h3{font-size:32px;}
-  .personal-text p{font-size:16px;}
   .job-card{padding:18px;border-radius:20px;}
   .job-topline{flex-direction:column;align-items:flex-start;gap:8px;}
   .job-card h4{font-size:18px;}
   .sub-cards{grid-template-columns:1fr;}
-  .slides-container{height:520px;}
-  .slide-card{width:220px;height:350px;border-radius:24px;}
+  .slides-container{height:420px;}
+  .slide-card{width:min(78vw, 320px);border-radius:24px;}
   .slide-card .card-title{font-size:19px;}
   .slide-arrow{width:44px;height:44px;font-size:24px;}
   #popup-carousel img{padding:50px 18px 22px;}
@@ -875,9 +1103,10 @@ body{
 <div class="nav">
   <a href="#home">首页</a>
   <a href="#about">个人情况</a>
-  <a href="#projects">项目展示</a>
+  <a href="#proposal">策划案展示</a>
   <a href="#content">内容运营</a>
-  <a href="#otherWorks">其他作品</a>
+  <a href="#projects">项目展示</a>
+  <a href="#otherWorks">会徽设计方案</a>
 </div>
 
 <div class="cursor-light"></div>
@@ -915,107 +1144,234 @@ body{
   </svg>
 </div>
 
-<section class="section" id="about">
-  <div class="marquee-container">
-    <div class="marquee">PERSONAL&nbsp;&nbsp;&nbsp;&nbsp;PERSONAL&nbsp;&nbsp;&nbsp;&nbsp;PERSONAL&nbsp;&nbsp;&nbsp;&nbsp;PERSONAL&nbsp;&nbsp;&nbsp;&nbsp;PERSONAL</div>
+<section class="section about-stage" id="about">
+  <div class="about-hint">左右滑动查看个人信息 / 实习经历 / 项目经历</div>
+  <button class="about-nav-btn left" aria-label="上一页">‹</button>
+  <button class="about-nav-btn right" aria-label="下一页">›</button>
+
+  <div class="about-slider" id="aboutSlider">
+    <section class="about-screen">
+      <div class="personal-wrap">
+        <div class="visual-side">
+          <div class="portrait-wrap">
+            <div class="portrait">
+              <img src="https://img.heliar.top/file/1773825464738_主题_15.png" alt="主题_15.png">
+            </div>
+          </div>
+        </div>
+
+        <div class="info-side">
+          <div class="name">黄菲菲</div>
+          <div class="meta">
+            <div>东华大学 美术 硕士</div>
+            <div>湖北民族大学 美术 学士</div>
+            <div class="email">958565298@qq.com</div>
+          </div>
+
+          <div class="info-board">
+            <div class="chip-grid">
+              <div class="chip">PPT（熟练掌握商务PPT制作）</div>
+              <div class="chip">豆包、即梦AI作图与设计应用</div>
+              <div class="chip">PS、Canvas、秀米(熟练使用，审美优秀)</div>
+              <div class="chip">摄影摄像、PR、剪映（熟练剪辑创意特色视频）</div>
+              <div class="chip">EXCEL，Xmind</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-screen">
+      <div class="about-panel">
+        <div class="resume-title">实习经历</div>
+        <div class="job-container">
+          <div>
+            <div class="job-card">
+              <div class="job-topline">
+                <div>
+                  <div class="job-meta">2025.06 — 2025.12</div>
+                  <h4>道达尔能源 TotalEnergies</h4>
+                  <p>技术与市场部实习生</p>
+                </div>
+                <div class="expand-hint">点击展开</div>
+              </div>
+            </div>
+            <div class="sub-cards">
+              <div class="sub-card"><div class="icon">⚙️</div><div class="sub-title">产品开发与全生命周期管理</div></div>
+              <div class="sub-card"><div class="icon">🎯</div><div class="sub-title">市场活动策划与执行</div></div>
+              <div class="sub-card"><div class="icon">📊</div><div class="sub-title">市场调研与数据分析</div></div>
+              <div class="sub-card"><div class="icon">📱</div><div class="sub-title">新媒体运营与内容创作</div></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="job-card">
+              <div class="job-topline">
+                <div>
+                  <div class="job-meta">2024.03 — 2024.10</div>
+                  <h4>上海翔格商务咨询有限公司</h4>
+                  <p>市场调查实习生</p>
+                </div>
+                <div class="expand-hint">点击展开</div>
+              </div>
+            </div>
+            <div class="sub-cards">
+              <div class="sub-card"><div class="icon">🧠</div><div class="sub-title">问卷设计与逻辑控制</div></div>
+              <div class="sub-card"><div class="icon">👥</div><div class="sub-title">样本筛选与讨论执行</div></div>
+              <div class="sub-card"><div class="icon">📍</div><div class="sub-title">调研流程跟进与项目协作</div></div>
+              <div class="sub-card"><div class="icon">📝</div><div class="sub-title">结论整理与报告支持</div></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="job-card">
+              <div class="job-topline">
+                <div>
+                  <div class="job-meta">2023.12 — 2024.12</div>
+                  <h4>上海乐瑕文化传播有限公司</h4>
+                  <p>非遗活动策划</p>
+                </div>
+                <div class="expand-hint">点击展开</div>
+              </div>
+            </div>
+            <div class="sub-cards">
+              <div class="sub-card"><div class="icon">🎪</div><div class="sub-title">主题活动策划</div></div>
+              <div class="sub-card"><div class="icon">📣</div><div class="sub-title">传播运营与现场执行</div></div>
+              <div class="sub-card"><div class="icon">🤝</div><div class="sub-title">资源协调与对接</div></div>
+              <div class="sub-card"><div class="icon">🎨</div><div class="sub-title">视觉物料统筹</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-screen">
+      <div class="about-panel">
+        <div class="resume-title">项目经历</div>
+        <div class="job-container">
+          <div>
+            <div class="job-card">
+              <div class="job-topline">
+                <div>
+                  <div class="job-meta">2023.09 — 2024.11</div>
+                  <h4>国家艺术基金《纺织服饰博物馆文创设计人才培训》</h4>
+                  <p>活动执行负责人</p>
+                </div>
+                <div class="expand-hint">点击展开</div>
+              </div>
+            </div>
+            <div class="sub-cards">
+              <div class="sub-card"><div class="icon">🏛️</div><div class="sub-title">空间与展陈设计</div></div>
+              <div class="sub-card"><div class="icon">🔗</div><div class="sub-title">跨团队协作执行</div></div>
+              <div class="sub-card"><div class="icon">🎥</div><div class="sub-title">媒体内容策划与视觉</div></div>
+              <div class="sub-card"><div class="icon">🧭</div><div class="sub-title">展览导引与解说</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <div class="resume-top">
-    <div class="profile-card">
-      <div class="photo-wrap">
-        <div class="personal-photo">
-          <img src="https://img.heliar.top/file/1773825464738_主题_15.png" alt="主题_15.png">
+  <div class="about-dots">
+    <span class="about-dot active"></span>
+    <span class="about-dot"></span>
+    <span class="about-dot"></span>
+  </div>
+</section>
+
+<section class="proposal-section" id="proposal">
+  <div class="proposal-wrap">
+    <h2 class="section-page-title">策划案展示</h2>
+    <p class="section-page-sub">收录液冷展会与研讨会两套策划案，支持在页面内直接预览完整 PDF 内容。</p>
+
+    <div class="proposal-shell">
+      <div class="proposal-topbar">
+        <div class="proposal-top-left">
+          <div class="proposal-label">Planning Proposal PDF</div>
+          <div class="proposal-doc-title">智冷未来 绿色算力｜道达尔能源 x 2025 CDCE 国际数据中心展</div>
+          <div class="proposal-doc-meta">液冷展会策划案 · PDF 内嵌展示</div>
         </div>
       </div>
 
-      <div class="personal-text">
-        <h3>黄菲菲</h3>
-        <p>东华大学 美术 硕士<br>湖北民族大学 美术 学士</p>
-        <p class="email">958565298@qq.com</p>
+      <div class="proposal-viewer">
+        <iframe src="./液冷展会策划案.pdf#view=FitH" title="液冷展会策划案 PDF 预览"></iframe>
       </div>
     </div>
 
-    <div class="skill-box">
-      <h4>技能与工具</h4>
-      <div class="skill-grid">
-        <div class="skill-item">
-          <strong>PPT / 方案输出</strong>
-          <span>熟练掌握商务PPT制作，擅长提案逻辑、视觉统一与信息层级整理。</span>
+    <div class="proposal-shell">
+      <div class="proposal-topbar">
+        <div class="proposal-top-left">
+          <div class="proposal-label">Seminar Proposal PDF</div>
+          <div class="proposal-doc-title">研讨会策划案展示</div>
+          <div class="proposal-doc-meta">研讨会策划案 · PDF 内嵌展示</div>
         </div>
-        <div class="skill-item">
-          <strong>AI 设计应用</strong>
-          <span>豆包、即梦等 AI 作图与设计辅助工具，可用于方案创意与视觉生成。</span>
-        </div>
-        <div class="skill-item">
-          <strong>视觉设计</strong>
-          <span>PS、Canva、秀米熟练使用，具备良好审美与品牌视觉表达能力。</span>
-        </div>
-        <div class="skill-item">
-          <strong>影像与剪辑</strong>
-          <span>摄影摄像、PR、剪映，能够完成创意短视频与活动传播内容制作。</span>
-        </div>
-        <div class="skill-item">
-          <strong>办公协作</strong>
-          <span>EXCEL、Xmind，可支持数据整理、流程梳理与项目协同管理。</span>
-        </div>
-        <div class="skill-item">
-          <strong>综合优势</strong>
-          <span>兼具美术背景、内容审美、执行推进与跨团队协作能力。</span>
-        </div>
+      </div>
+
+      <div class="proposal-viewer">
+        <iframe src="./研讨会策划案.pdf#view=FitH" title="研讨会策划案 PDF 预览"></iframe>
       </div>
     </div>
   </div>
+</section>
 
-  <div class="resume-block">
-    <div class="resume-title">实习经历</div>
-    <div class="job-container">
-      <div class="job-card" id="job1">
-        <div class="job-topline">
-          <div>
-            <div class="job-meta">2025.06 — 2025.12</div>
-            <h4>道达尔能源 TotalEnergies</h4>
-            <p>技术与市场部实习生</p>
-          </div>
-          <div class="expand-hint">点击展开</div>
-        </div>
-      </div>
+<section class="content-section" id="content">
+  <h2 class="section-page-title">内容运营</h2>
+  <p class="content-intro">公众号选题、封面设计、图文排版与传播案例。点击卡片即可跳转到对应原链接查看完整内容。</p>
 
-      <div class="job-card" id="job2">
-        <div class="job-topline">
-          <div>
-            <div class="job-meta">2024.03 — 2024.10</div>
-            <h4>上海翔格商务咨询有限公司</h4>
-            <p>市场调查实习生</p>
-          </div>
-          <div class="expand-hint">点击展开</div>
-        </div>
+  <div class="magazine-grid">
+    <a class="mag-card tall" href="https://mp.weixin.qq.com/s/Stc0B6rAWJKWJtPCwFtPwQ" target="_blank" rel="noopener noreferrer">
+      <img class="mag-cover" alt="液冷有道 | 道达尔能源特殊流体Bio Life生物基冷却液亮相CDCE2025数据中心及云计算展" src="https://img.heliar.top/file/1773830832006_e259856a042177fe8433fd754a688011.gif">
+      <div class="mag-info">
+        <span class="mag-index">WeChat Article 01</span>
+        <div class="mag-title">液冷有道 | 道达尔能源特殊流体Bio Life生物基冷却液亮相CDCE2025数据中心及云计算展</div>
+        <div class="mag-desc">公众号图文 / 行业展会传播 / 产品亮点展示</div>
       </div>
+    </a>
 
-      <div class="job-card" id="job3">
-        <div class="job-topline">
-          <div>
-            <div class="job-meta">2023.12 — 2024.12</div>
-            <h4>上海乐瑕文化传播有限公司</h4>
-            <p>非遗活动策划</p>
-          </div>
-          <div class="expand-hint">点击展开</div>
-        </div>
+    <a class="mag-card medium" href="https://mp.weixin.qq.com/s/WN9-Qf-tjBdAQ_B_RekUnw" target="_blank" rel="noopener noreferrer">
+      <img class="mag-cover" alt="与道同行 携手共赢 | 2025道达尔能源作物保护经销商会议圆满落幕" src="https://img.heliar.top/file/1773831042559_image.png">
+      <div class="mag-info">
+        <span class="mag-index">WeChat Article 02</span>
+        <div class="mag-title">与道同行 携手共赢 | 2025道达尔能源作物保护经销商会议圆满落幕</div>
+        <div class="mag-desc">活动回顾 / 会议传播 / 公众号排版</div>
       </div>
-    </div>
+    </a>
 
-    <div class="resume-title" style="margin-top:42px;">项目经历</div>
-    <div class="job-container">
-      <div class="job-card" id="job4">
-        <div class="job-topline">
-          <div>
-            <div class="job-meta">2023.09 — 2024.11</div>
-            <h4>国家艺术基金《纺织服饰博物馆文创设计人才培训》</h4>
-            <p>活动执行负责人</p>
-          </div>
-          <div class="expand-hint">点击展开</div>
-        </div>
+    <a class="mag-card medium" href="https://mp.weixin.qq.com/s/yw2RrWy8ov9MV3W6iQogHA" target="_blank" rel="noopener noreferrer">
+      <img class="mag-cover" alt="为梦想加满能量，道达尔能源携手铁娘子车队出征2025勒芒24小时耐力赛！" src="https://img.heliar.top/file/1773831125293_image.png">
+      <div class="mag-info">
+        <span class="mag-index">WeChat Article 03</span>
+        <div class="mag-title">为梦想加满能量，道达尔能源携手铁娘子车队出征2025勒芒24小时耐力赛！</div>
+        <div class="mag-desc">赛事传播 / 品牌内容 / 封面设计</div>
       </div>
-    </div>
+    </a>
+
+    <a class="mag-card short" href="https://mp.weixin.qq.com/s/mgPvQkCOYrRhfLeScNIrHA" target="_blank" rel="noopener noreferrer">
+      <img class="mag-cover" alt="3v3羽道飞驰季丨燃炸赛场，冠军降临！赛场移步福州南京" src="https://img.heliar.top/file/1773831256357_eeea6f202c39d916c65fa312c0b88305.jpeg">
+      <div class="mag-info">
+        <span class="mag-index">WeChat Article 04</span>
+        <div class="mag-title">3v3羽道飞驰季丨燃炸赛场，冠军降临！赛场移步福州南京</div>
+        <div class="mag-desc">活动宣传 / 体育赛事传播 / 图文运营</div>
+      </div>
+    </a>
+
+    <a class="mag-card short" href="https://mp.weixin.qq.com/s/x8U2n1pEYJOb3Czb7pGjfQ" target="_blank" rel="noopener noreferrer">
+      <img class="mag-cover" alt="与道同行丨道达尔能源携手GT世界挑战赛竞速北京，文末互动赢运动好礼" src="https://img.heliar.top/file/1773831362674_4711773831346_.pic.jpg">
+      <div class="mag-info">
+        <span class="mag-index">WeChat Article 05</span>
+        <div class="mag-title">与道同行丨道达尔能源携手GT世界挑战赛竞速北京，文末互动赢运动好礼</div>
+        <div class="mag-desc">赛事内容 / 互动传播 / 品牌推文</div>
+      </div>
+    </a>
+
+    <a class="mag-card tall" href="https://mp.weixin.qq.com/s/0jFLdvckcsTkpACKRvuE0g" target="_blank" rel="noopener noreferrer">
+      <img class="mag-cover" alt="与道同行丨勒芒24小时，蓄势待发！" src="https://img.heliar.top/file/1773831505354_4721773831488_.pic.jpg">
+      <div class="mag-info">
+        <span class="mag-index">WeChat Article 06</span>
+        <div class="mag-title">与道同行丨勒芒24小时，蓄势待发！</div>
+        <div class="mag-desc">赛事预热 / 品牌传播 / 图文排版</div>
+      </div>
+    </a>
   </div>
 </section>
 
@@ -1064,67 +1420,6 @@ body{
         </div>
       </div>
     </section>
-  </div>
-</section>
-
-<section class="content-section" id="content">
-  <h2 class="section-page-title">内容运营</h2>
-  <p class="content-intro">公众号选题、封面设计、图文排版与传播案例。点击卡片即可跳转到对应原链接查看完整内容。</p>
-
-  <div class="magazine-grid">
-    <a class="mag-card tall" href="https://mp.weixin.qq.com/s/Stc0B6rAWJKWJtPCwFtPwQ" target="_blank" rel="noopener noreferrer">
-      <img class="mag-cover" alt="液冷有道 | 道达尔能源特殊流体Bio Life生物基冷却液亮相CDCE2025数据中心及云计算展" src="https://img.heliar.top/file/1773830832006_e259856a042177fe8433fd754a688011.gif">
-      <div class="mag-info">
-        <span class="mag-index">WeChat Article 01</span>
-        <div class="mag-title">液冷有道 | 道达尔能源特殊流体Bio Life生物基冷却液亮相CDCE2025数据中心及云计算展</div>
-        <div class="mag-desc">公众号图文 / 行业展会传播 / 产品亮点展示</div>
-      </div>
-    </a>
-
-    <a class="mag-card medium" href="https://mp.weixin.qq.com/s/WN9-Qf-tjBdAQ_B_RekUnw" target="_blank" rel="noopener noreferrer">
-      <img class="mag-cover" alt="与道同行 携手共赢 | 2025道达尔能源作物保护经销商会议圆满落幕" src="https://img.heliar.top/file/1773831042559_image.png">
-      <div class="mag-info">
-        <span class="mag-index">WeChat Article 02</span>
-        <div class="mag-title">与道同行 携手共赢 | 2025道达尔能源作物保护经销商会议圆满落幕</div>
-        <div class="mag-desc">活动回顾 / 会议传播 / 公众号排版</div>
-      </div>
-    </a>
-
-    <a class="mag-card medium" href="https://mp.weixin.qq.com/s/yw2RrWy8ov9MV3W6iQogHA" target="_blank" rel="noopener noreferrer">
-      <img class="mag-cover" alt="为梦想加满能量，道达尔能源携手铁娘子车队出征2025勒芒24小时耐力赛！" src="https://img.heliar.top/file/1773831125293_image.png">
-      <div class="mag-info">
-        <span class="mag-index">WeChat Article 03</span>
-        <div class="mag-title">为梦想加满能量，道达尔能源携手铁娘子车队出征2025勒芒24小时耐力赛！</div>
-        <div class="mag-desc">赛事传播 / 品牌内容 / 封面设计</div>
-      </div>
-    </a>
-
-    <a class="mag-card short" href="https://mp.weixin.qq.com/s/mgPvQkCOYrRhfLeScNIrHA" target="_blank" rel="noopener noreferrer">
-      <img class="mag-cover" alt="3v3羽道飞驰季丨燃炸赛场，冠军降临！赛场移步福州南京" src="https://img.heliar.top/file/1773831256357_eeea6f202c39d916c65fa312c0b88305.jpeg">
-      <div class="mag-info">
-        <span class="mag-index">WeChat Article 04</span>
-        <div class="mag-title">3v3羽道飞驰季丨燃炸赛场，冠军降临！赛场移步福州南京</div>
-        <div class="mag-desc">活动宣传 / 体育赛事传播 / 图文运营</div>
-      </div>
-    </a>
-
-    <a class="mag-card short" href="https://img.heliar.top/file/1773831362674_4711773831346_.pic.jpg" target="_blank" rel="noopener noreferrer">
-      <img class="mag-cover" alt="与道同行丨道达尔能源携手GT世界挑战赛竞速北京，文末互动赢运动好礼" src="https://img.heliar.top/file/1773831362674_4711773831346_.pic.jpg">
-      <div class="mag-info">
-        <span class="mag-index">WeChat Article 05</span>
-        <div class="mag-title">与道同行丨道达尔能源携手GT世界挑战赛竞速北京，文末互动赢运动好礼</div>
-        <div class="mag-desc">赛事内容 / 互动传播 / 品牌推文</div>
-      </div>
-    </a>
-
-    <a class="mag-card tall" href="https://img.heliar.top/file/1773831505354_4721773831488_.pic.jpg" target="_blank" rel="noopener noreferrer">
-      <img class="mag-cover" alt="与道同行丨勒芒24小时，蓄势待发！" src="https://img.heliar.top/file/1773831505354_4721773831488_.pic.jpg">
-      <div class="mag-info">
-        <span class="mag-index">WeChat Article 06</span>
-        <div class="mag-title">与道同行丨勒芒24小时，蓄势待发！</div>
-        <div class="mag-desc">赛事预热 / 品牌传播 / 图文排版</div>
-      </div>
-    </a>
   </div>
 </section>
 
@@ -1202,51 +1497,44 @@ function animateCursor(){
 }
 animateCursor();
 
-// 第二页展开
-function toggle(id,data){
-  const el=document.getElementById(id);
-  if(!el) return;
-  el.onclick=function(){
-    let next=this.nextElementSibling;
-    if(next && next.classList.contains('sub-cards')) {
-      next.remove();
-    }else{
-      const box=document.createElement('div');
-      box.className='sub-cards';
-      data.forEach(d=>{
-        const div=document.createElement('div');
-        div.className='sub-card';
-        div.innerHTML=`<div class="icon">${d[0]}</div><div class="sub-title">${d[1]}</div>`;
-        box.appendChild(div);
-      });
-      this.parentNode.insertBefore(box,this.nextSibling);
-    }
-  }
+// 第二页展开收起
+document.querySelectorAll("#about .job-card").forEach(card=>{
+  card.addEventListener("click", function(){
+    const detail=this.parentElement.querySelector(".sub-cards");
+    if(!detail) return;
+    detail.classList.toggle("open");
+  });
+});
+
+// 第二页横向滑动
+const aboutSlider=document.getElementById("aboutSlider");
+const aboutScreens=[...document.querySelectorAll(".about-screen")];
+const aboutDots=[...document.querySelectorAll(".about-dot")];
+const aboutLeft=document.querySelector(".about-nav-btn.left");
+const aboutRight=document.querySelector(".about-nav-btn.right");
+let aboutCurrent=0;
+function goAbout(index){
+  if(!aboutSlider) return;
+  aboutCurrent=Math.max(0,Math.min(index,aboutScreens.length-1));
+  aboutSlider.scrollTo({left:aboutCurrent*window.innerWidth,behavior:"smooth"});
+  aboutDots.forEach((d,i)=>d.classList.toggle("active",i===aboutCurrent));
 }
-toggle('job1',[
-  ["⚙️","产品开发与全生命周期管理"],
-  ["🎯","市场活动策划与执行"],
-  ["📊","市场调研与数据分析"],
-  ["📱","新媒体运营与内容创作"]
-]);
-toggle('job2',[
-  ["🧠","问卷设计与逻辑控制"],
-  ["👥","样本筛选与讨论执行"],
-  ["📍","调研流程跟进与项目协作"],
-  ["📝","结论整理与报告支持"]
-]);
-toggle('job3',[
-  ["🎪","主题活动策划"],
-  ["📣","传播运营与现场执行"],
-  ["🤝","资源协调与对接"],
-  ["🎨","视觉物料统筹"]
-]);
-toggle('job4',[
-  ["🏛️","空间与展陈设计"],
-  ["🔗","跨团队协作执行"],
-  ["🎥","媒体内容策划与视觉"],
-  ["🧭","展览导引与解说"]
-]);
+function syncAbout(){
+  if(!aboutSlider) return;
+  const idx=Math.round(aboutSlider.scrollLeft/window.innerWidth);
+  aboutCurrent=idx;
+  aboutDots.forEach((d,i)=>d.classList.toggle("active",i===aboutCurrent));
+}
+if(aboutLeft) aboutLeft.addEventListener("click",()=>goAbout(aboutCurrent-1));
+if(aboutRight) aboutRight.addEventListener("click",()=>goAbout(aboutCurrent+1));
+if(aboutSlider) aboutSlider.addEventListener("scroll",()=>requestAnimationFrame(syncAbout));
+window.addEventListener("resize",()=>goAbout(aboutCurrent));
+document.addEventListener("keydown",e=>{
+  if(window.scrollY >= document.getElementById("about").offsetTop - 200 && window.scrollY < document.querySelector(".projects-section").offsetTop - 200){
+    if(e.key==="ArrowLeft") goAbout(aboutCurrent-1);
+    if(e.key==="ArrowRight") goAbout(aboutCurrent+1);
+  }
+});
 
 // 鼠标光颜色切换
 window.addEventListener("scroll",()=>{
@@ -1267,19 +1555,27 @@ window.addEventListener("scroll",()=>{
 // 项目卡片轮换
 const slides=document.querySelectorAll('.slide-card');
 let current=0;
-function updateSlides(){
+let isDragging=false,startX=0,dragMoved=false;
+function updateSlides(animated=true){
+  const spacing = window.innerWidth < 640 ? 72 : window.innerWidth < 1024 ? 150 : 260;
   slides.forEach((s,i)=>{
     let offset=i-current;
     if(offset > 2) offset -= slides.length;
     if(offset < -2) offset += slides.length;
-    let z=10-Math.abs(offset);
+    let z=20-Math.abs(offset);
     if(z<1) z=1;
+    const scale = offset===0 ? 1 : (Math.abs(offset)===1 ? 0.9 : 0.78);
+    const rotate = offset * -2.4;
+    const depth = Math.abs(offset) * -120;
     s.style.zIndex=z;
-    s.style.left=`calc(50% + ${offset*108}px)`;
+    s.style.left=`calc(50% + ${offset*spacing}px)`;
     s.style.top='50%';
-    s.style.transform=`translate(-50%,-50%) scale(${offset===0?1:0.9}) rotate(${offset* -3.2}deg)`;
     s.style.opacity=Math.abs(offset)>2?0:1;
     s.style.pointerEvents=Math.abs(offset)>2?'none':'auto';
+    s.style.boxShadow = offset===0
+      ? '0 30px 64px rgba(0,0,0,.24)'
+      : '0 14px 30px rgba(0,0,0,.14)';
+    s.style.transform=`translate3d(-50%,-50%, ${depth}px) scale(${scale}) rotate(${rotate}deg)`;
   });
 }
 slides.forEach(s=>{
@@ -1299,15 +1595,16 @@ document.querySelector('.slide-arrow.right').addEventListener('click',()=>{
   updateSlides();
 });
 
-let isDragging=false,startX=0;
 const slidesContainer=document.querySelector('.slides-container');
 slidesContainer.addEventListener('mousedown',e=>{
   isDragging=true;
+  dragMoved=false;
   startX=e.clientX;
 });
 document.addEventListener('mousemove',e=>{
   if(!isDragging) return;
   const dx=e.clientX-startX;
+  if(Math.abs(dx) > 8) dragMoved = true;
   if(dx>70){
     current=(current-1+slides.length)%slides.length;
     updateSlides();
@@ -1408,6 +1705,9 @@ const projectImageSets = {
 
 slides.forEach((slide, index)=>{
   slide.addEventListener('click', ()=>{
+    if(dragMoved) return;
+    current = index;
+    updateSlides();
     if(projectImageSets[index]){
       openImagePopup(projectImageSets[index]);
     }
